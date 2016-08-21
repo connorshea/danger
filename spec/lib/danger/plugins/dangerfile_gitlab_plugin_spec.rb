@@ -27,7 +27,7 @@ describe Danger::DangerfileGitLabPlugin, host: :gitlab do
 
     describe "##{method}" do
       it "sets the correct #{method}" do
-        with_gitlab_git_repo do
+        with_git_repo do
           dangerfile.env.request_source.fetch_details
           expect(plugin.send(method)).to eq(expected)
         end
@@ -37,14 +37,14 @@ describe Danger::DangerfileGitLabPlugin, host: :gitlab do
 
   describe "#pr_json" do
     it "is set" do
-      with_gitlab_git_repo do
+      with_git_repo do
         dangerfile.env.request_source.fetch_details
         expect(plugin.pr_json).not_to be_nil
       end
     end
 
     it "has the expected keys" do
-      with_gitlab_git_repo do
+      with_git_repo do
         dangerfile.env.request_source.fetch_details
         json = plugin.pr_json
 
